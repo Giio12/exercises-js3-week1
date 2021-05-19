@@ -1,4 +1,5 @@
 function removeVowels(word) {
+  
   var characters = word.split("");
 
   var result = [];
@@ -33,6 +34,7 @@ function removeVowelsForWords(words) {
   Let's trace this piece of code - what is the value of result with this input
   */
   var result = removeVowels('samuel');
+  console.log(result)// _a_ue_ Result
 
 
 
@@ -40,5 +42,7 @@ function removeVowelsForWords(words) {
 	Task 2
 	Trace what happens if we call the function removeVowelsForWords with this input: ["Irina", "Etza", "Daniel"]
     expected output?:
-*/
+*/ var result = removeVowels(["Irina", "Etza", "Daniel"]);
+console.log(result)
+//TypeError: word.split is not a function //Sale el siguiente error porque es un array 
 
