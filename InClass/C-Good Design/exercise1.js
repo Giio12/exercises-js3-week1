@@ -31,42 +31,48 @@
 
 7. Magic numbers. The code contains a lot of magic numbers, including `17775`,
    `0.09` and `0.1`.
-
-8. Useless parameters: the code contains a variable which isn't used. They
+   
+   8. Useless parameters: the code contains a variable which isn't used. They
    should be removed because they are confusing. It is tempting when you're
    starting to code a function to add more parameters thinking that you might
    need them, but it's important to remove them if you don't end up using them.
    
    */
+  
+  var nationalInsurance
+  function calculadoraSeguroNacional(taxCode, salary) { //Funcion para calcular el seguro Nacional por separado
+  if (taxCode === "1150L") { // De acuerdo al codigo de impuesto se hace hace una multiplicacion para saber el seguro nacional
+     nationalInsurance = salary * 0.1;
+   } else if (taxCode === "ST") {
+      nationalInsurance = salary * 0.05;
+   } else {
+      nationalInsurance = salary * 0.08;
+   }
 
-
-function myFunction(salary, taxCode, incomeTax1, incomeTax2, ownsCar) {
-  var totalIncomeTax = incomeTax1 + incomeTax2;
-  var studentLoan = (salary - 17775) * 0.09;
-  var originalSalary = salary;
-  var nationalInsurance = null;
-
-  if (taxCode === "1150L") {
-    nationalInsurance = salary * 0.1;
-  } else if (taxCode === "ST") {
-    nationalInsurance = salary * 0.05;
-  } else {
-    nationalInsurance = salary * 0.08;
-  }
-
-  var deductions = [nationalInsurance, totalIncomeTax, studentLoan];
-
-  salary = salary - deductions[0];
-  salary = salary - deductions[1];
-  salary = salary - deductions[2];
-
-  return (
-    "Your gross income is £" +
-    originalSalary.toString() +
-    " and your net income is £" +
-    salary.toString() +
-    "."
-  );
 }
+calculadoraSeguroNacional("1150L", 28000)//LLamamos a la funcion para calcular el seguro Nacional
+  
 
-console.log(myFunction(28000, "1150L", 1000, 580, false));
+  function calculadoraSueldoNeto(salary, incomeTax1,incomeTax2) {//Funcion para calcular ingreso neto
+   var incomeTax=[incomeTax1, incomeTax2]
+   var totalIncomeTax = incomeTax[0] + incomeTax[1];
+   var studentLoan = (salary - 17775) * 0.09;
+   var originalSalary = salary;
+   
+
+   var deductions = [nationalInsurance, totalIncomeTax, studentLoan];//Hacemos un for Each para deductions y poder sacar salario neto
+    deductions.forEach(deduction=>{
+    salary = salary - deduction
+   })
+   
+   return (
+      "Your gross income is ï¿½" +
+      originalSalary.toString() +
+      " and your net income is ï¿½" +
+      salary.toString() +
+      "."
+      
+      );
+   }
+   console.log(calculadoraSueldoNeto(28000,1000, 580));
+   
